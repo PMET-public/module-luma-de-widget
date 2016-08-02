@@ -1,0 +1,10 @@
+{
+    "name": "magentoese/module-luma-de-widget",
+    "type": "magento2-module",
+     "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "MagentoEse\\LumaDEWidget\\": ""
+        }
+    }
+}
