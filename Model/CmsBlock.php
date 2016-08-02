@@ -153,7 +153,7 @@ class CmsBlock
 
                 $widgetInstance->setType($type)->setCode($code)->setThemeId($themeId);
                 $widgetInstance->setTitle($row['title'])
-                    ->setStoreId($_viewId)
+                    ->setStoreIds($_viewId)
                     ->setWidgetParameters(['block_id' => $block->getId()])
                     ->setPageGroups([$pageGroup]);
                 $widgetInstance->save();

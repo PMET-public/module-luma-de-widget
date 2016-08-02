@@ -3,7 +3,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace MagentoEse\LumaDeWidget\Setup;
+namespace MagentoEse\LumaDEWidget\Setup;
 
 use Magento\Framework\Setup;
 
