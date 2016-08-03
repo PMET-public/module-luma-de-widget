@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace MagentoEse\LumaDeWidget\Model;
+namespace MagentoEse\LumaDEWidget\Model;
 
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
