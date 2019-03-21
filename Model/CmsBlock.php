@@ -7,7 +7,7 @@
 namespace MagentoEse\LumaDEWidget\Model;
 
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
-
+use \Magento\Framework\App\State;
 /**
  * Launches setup of sample data for Widget module
  */
@@ -49,6 +49,11 @@ class CmsBlock
     protected $csvReader;
 
     /**
+     * @var State
+     */
+    private $appState;
+
+    /**
      * @param SampleDataContext $sampleDataContext
      * @param \Magento\Widget\Model\Widget\InstanceFactory $widgetFactory
      * @param \Magento\Theme\Model\ResourceModel\Theme\CollectionFactory $themeCollectionFactory
@@ -63,7 +68,8 @@ class CmsBlock
         \Magento\Cms\Model\BlockFactory $cmsBlockFactory,
         \Magento\Widget\Model\ResourceModel\Widget\Instance\CollectionFactory $appCollectionFactory,
         \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryFactory,
-        \Magento\Store\Model\Store $storeView
+        \Magento\Store\Model\Store $storeView,
+        State $appState = null
     ) {
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
@@ -74,6 +80,7 @@ class CmsBlock
         $this->categoryFactory = $categoryFactory;
         $this->config = require 'Config.php';
         $this->storeView = $storeView;
+        $this->appState = $appState ?: \Magento\Framework\App\ObjectManager::getInstance()->get(State::class);
     }
 
     /**
@@ -156,7 +163,10 @@ class CmsBlock
                     ->setStoreIds($_viewId)
                     ->setWidgetParameters(['block_id' => $block->getId()])
                     ->setPageGroups([$pageGroup]);
-                $widgetInstance->save();
+                $this->appState->emulateAreaCode(
+                    'frontend',
+                    [$widgetInstance, 'save']
+                );
             }
         }
     }
