@@ -8,6 +8,8 @@ namespace MagentoEse\LumaDEWidget\Model;
 
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 use \Magento\Framework\App\State;
+use Magento\Store\Model\Store;
+
 /**
  * Launches setup of sample data for Widget module
  */
@@ -52,6 +54,18 @@ class CmsBlock
      * @var State
      */
     private $appState;
+
+    /**
+     * 
+     * @var array
+     */
+    private $config;
+
+    /**
+     * 
+     * @var Store
+     */
+    private $storeView;
 
     /**
      * @param SampleDataContext $sampleDataContext
